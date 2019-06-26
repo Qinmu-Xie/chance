@@ -2,7 +2,7 @@ package com.github.xqm;
 
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class ExclusiveChanceTest {
 
@@ -18,4 +18,21 @@ public class ExclusiveChanceTest {
         //then
         assertEquals(new ExclusiveChance(0.8), not);
     }
+
+    @Test
+    public void should_get_and_chance() {
+
+        //given
+        ExclusiveChance exclusiveChanceA = new ExclusiveChance(0.2);
+        ExclusiveChance exclusiveChanceB = new ExclusiveChance(0.7);
+
+        //when
+        ExclusiveChance and = exclusiveChanceA.and(exclusiveChanceB);
+
+        //then
+        assertEquals(new ExclusiveChance(0.0), and);
+
+    }
+
+
 }

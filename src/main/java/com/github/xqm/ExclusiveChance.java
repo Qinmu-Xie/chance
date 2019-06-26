@@ -25,4 +25,8 @@ public class ExclusiveChance {
     public int hashCode() {
         return Objects.hashCode(possibility);
     }
+
+    public ExclusiveChance and(ExclusiveChance chance) {
+        return new ExclusiveChance(0.0);
+    }
 }
