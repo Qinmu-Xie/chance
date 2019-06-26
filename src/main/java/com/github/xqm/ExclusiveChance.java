@@ -13,6 +13,16 @@ public class ExclusiveChance {
         return new ExclusiveChance(1.0 - this.possibility);
     }
 
+
+    ExclusiveChance and(ExclusiveChance chance) {
+        return new ExclusiveChance(0.0);
+    }
+
+    ExclusiveChance or(ExclusiveChance chance) {
+        return new ExclusiveChance(Math.min(this.possibility + chance.possibility, 1.0));
+    }
+
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -26,7 +36,10 @@ public class ExclusiveChance {
         return Objects.hashCode(possibility);
     }
 
-    public ExclusiveChance and(ExclusiveChance chance) {
-        return new ExclusiveChance(0.0);
+    @Override
+    public String toString() {
+        return "ExclusiveChance{" +
+                "possibility=" + possibility +
+                '}';
     }
 }

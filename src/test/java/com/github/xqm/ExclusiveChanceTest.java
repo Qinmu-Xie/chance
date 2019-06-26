@@ -35,4 +35,18 @@ public class ExclusiveChanceTest {
     }
 
 
+    @Test
+    public void should_get_or_chance() {
+
+        //given
+        ExclusiveChance exclusiveChanceA = new ExclusiveChance(0.2);
+        ExclusiveChance exclusiveChanceB = new ExclusiveChance(0.7);
+
+        //when
+        ExclusiveChance or = exclusiveChanceA.or(exclusiveChanceB);
+
+        //then
+        assertEquals(new ExclusiveChance(0.9), or);
+
+    }
 }
