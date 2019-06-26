@@ -4,7 +4,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
-public class ChanceTest {
+public class IndependentChanceTest {
 
     @Test
     public void should_get_not_chance() {
