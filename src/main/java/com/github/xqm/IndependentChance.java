@@ -4,27 +4,25 @@ import com.google.common.base.Objects;
 
 public class IndependentChance {
     private Double possibility;
+    private double DELTA = 0.000001;
+    private int MUST_HAPPEN = 1;
 
     IndependentChance(double possibility) {
         this.possibility = possibility;
     }
 
-    double getPossibility() {
-        return this.possibility;
-    }
-
     IndependentChance not() {
-        return new IndependentChance(1 - this.possibility);
+        return new IndependentChance(MUST_HAPPEN - this.possibility);
     }
 
 
     IndependentChance and(IndependentChance chance) {
-        return new IndependentChance(this.possibility * chance.getPossibility());
+        return new IndependentChance(this.possibility * chance.possibility);
     }
 
     public IndependentChance or(IndependentChance chance) {
-        return new IndependentChance(this.possibility + chance.getPossibility()
-                - (this.possibility * chance.getPossibility()));
+        return new IndependentChance(this.possibility + chance.possibility
+                - this.and(chance).possibility);
     }
 
     @Override
@@ -32,7 +30,7 @@ public class IndependentChance {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         IndependentChance that = (IndependentChance) o;
-        return Math.abs(possibility - that.possibility) < 0.000001;
+        return Math.abs(possibility - that.possibility) < DELTA;
     }
 
     @Override
